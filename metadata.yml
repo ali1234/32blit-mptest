@@ -1,10 +1,10 @@
-title: game title
-description: game description
-author: you
+title: Multiplayer Test
+description: Test the multiplayer API
+author: Alistair Buxton
 splash:
   file: assets/no-image.png
 icon:
   file: assets/no-icon.png
 version: v0.0.1
-category: game # game, demo, utility, ...
-url: https://github.com/32blit/32blit-boilerplate
+category: utility # game, demo, utility, ...
+url: https://github.com/ali1234/32blit-mptest

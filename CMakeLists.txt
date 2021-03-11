@@ -2,10 +2,10 @@
 cmake_minimum_required(VERSION 3.9)
 
 # Replace "game" with a name for your project (this is used the name of the output)
-project(game)
+project(mptest)
+file (GLOB SOURCES src/*.cpp)
 
 # Add your sources here (adding headers is optional, but helps some CMake generators)
-set(PROJECT_SOURCE game.cpp game.hpp)
 
 # ... and any other files you want in the release here
 set(PROJECT_DISTRIBS LICENSE README.md)
@@ -19,7 +19,7 @@ endif()
 
 find_package (32BLIT CONFIG REQUIRED PATHS ../32blit-sdk)
 
-blit_executable (${PROJECT_NAME} ${PROJECT_SOURCE})
+blit_executable (${PROJECT_NAME} ${SOURCES})
 blit_assets_yaml (${PROJECT_NAME} assets.yml)
 blit_metadata (${PROJECT_NAME} metadata.yml)
 add_custom_target (flash DEPENDS ${PROJECT_NAME}.flash)
@@ -29,3 +29,6 @@ install (FILES ${PROJECT_DISTRIBS} DESTINATION .)
 set (CPACK_INCLUDE_TOPLEVEL_DIRECTORY OFF)
 set (CPACK_GENERATOR "ZIP" "TGZ")
 include (CPack)
+
+# just for testing multiplayer
+add_custom_target (blockgame-mp /bin/bash -c \"./blockgame --position 1595,360 & sleep 0.5 && ./blockgame --position 2245,360\" DEPENDS blockgame)
