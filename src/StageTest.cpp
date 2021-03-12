@@ -13,7 +13,7 @@ void StageTest::on_message(const Message &message) {
     if (message.type == Message::Pong) {
         uint32_t lat = (blit::now() - message.oms) * 1000;
         if (lat == 0) {
-            lat = blit::now_us() - message.ous;
+            lat = blit::us_diff(message.ous, blit::now_us());
         }
         if (lat < lat_min) lat_min = lat;
         if (lat > lat_max) lat_max = lat;
