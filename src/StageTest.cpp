@@ -2,6 +2,7 @@
 // Copyright (c) 2021 Alistair Buxton <a.j.buxton@gmail.com>
 // GPL-3.0-or-later
 
+#include <cinttypes>
 #include "StageTest.hpp"
 #include "StageMenu.hpp"
 
@@ -65,9 +66,9 @@ void StageTest::render() {
 #define X 22
 #define Y 20
     blit::screen.text("      Sent   Received       Ping       Pong", blit::minimal_font, blit::Point(X, Y), false);
-    snprintf(buffer, 100, "%10d %10d %10d %10d", send_count, recv_count, ping_count, pong_count);
+    snprintf(buffer, 100, "%10" PRIu32 " %10" PRIu32 " %10" PRIu32 " %10" PRIu32 "", send_count, recv_count, ping_count, pong_count);
     blit::screen.text(buffer, blit::minimal_font, blit::Point(X, Y+10), false);
     blit::screen.text("   Latency (ms)   Min        Max        Ave", blit::minimal_font, blit::Point(X, Y+30), false);
-    snprintf(buffer, 100, "           %10.1f %10.1f %10.1f", lat_min/1000.0f, lat_max/1000.0f, lat_ave/1000.0f);
+    snprintf(buffer, 100, "           %10.1f %10.1f %10.1f", (double)(lat_min/1000.0), (double)(lat_max/1000.0), (double)(lat_ave/1000.0));
     blit::screen.text(buffer, blit::minimal_font, blit::Point(X, Y+40), false);
 }
